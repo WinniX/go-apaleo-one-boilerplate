@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+</head>
+<body>
+	<h3>List of top 10 reservations</h3>
+	<ul>
+	{{ range .Reservations }}
+		<li>
+			<a href="https://app.apaleo.com/{{ .Property.Id }}/reservations/{{ .Id }}">
+			{{with .PrimaryGuest}}{{ .FirstName }} {{ .LastName }}{{end}}
+			</a>
+		</li>
+	{{ end }}
+	</ul>
+</body>
+</html>

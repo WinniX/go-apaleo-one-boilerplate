@@ -1,0 +1,792 @@
+openapi: 3.0.1
+info:
+  description: The Integration API allows apps to ...
+  title: Integration API
+  version: v1
+servers:
+- url: /
+paths:
+  /integration/v1/ui-integrations:
+    get:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsGet
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+          description: Success
+        "204":
+          content: {}
+          description: Success
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+  /integration/v1/ui-integrations/{target}/{id}:
+    delete:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsByTargetByIdDelete
+      parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "404":
+          content: {}
+          description: The Request-URI could not be found.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+    get:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsByTargetByIdGet
+      parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationItemModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationItemModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationItemModel'
+          description: Success
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "404":
+          content: {}
+          description: The Request-URI could not be found.
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+    put:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsByTargetByIdPut
+      parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUiIntegrationModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUiIntegrationModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUiIntegrationModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUiIntegrationModel'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "404":
+          content: {}
+          description: The Request-URI could not be found.
+        "415":
+          content: {}
+          description: Unsupported media type.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+      x-codegen-request-body-name: body
+  /integration/v1/ui-integrations/{target}:
+    get:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsByTargetGet
+      parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationListModel'
+          description: Success
+        "204":
+          content: {}
+          description: Success
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+    post:
+      description: '<br>You must have this scope: ''integration:ui-integrations.manage''.'
+      operationId: IntegrationUi-integrationsByTargetPost
+      parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateUiIntegrationModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUiIntegrationModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateUiIntegrationModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateUiIntegrationModel'
+        required: true
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationCreatedModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationCreatedModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationCreatedModel'
+          description: Success
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "404":
+          content: {}
+          description: The Request-URI could not be found.
+        "415":
+          content: {}
+          description: Unsupported media type.
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: Validation errors in the request body or query params.
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      tags:
+      - UiIntegrations
+      x-codegen-request-body-name: body
+  /integration/v1/ui-integrations/{target}/{id}/$test:
+    get:
+      description: "Tests that the process of getting the public url from the provided\
+        \ url is done correctly.\r\nIf there are any errors with the process, it will\
+        \ provide information on what might have gone wrong."
+      operationId: IntegrationUi-integrationsByTargetById$testGet
+      parameters:
+      - description: Target for the integration
+        in: path
+        name: target
+        required: true
+        schema:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      - description: Id of the integration to be tested
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationTestResultModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationTestResultModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UiIntegrationTestResultModel'
+          description: The result of the test
+        "400":
+          content: {}
+          description: Bad request.
+        "401":
+          content: {}
+          description: You are unauthorized.
+        "403":
+          content: {}
+          description: Forbidden.
+        "404":
+          content: {}
+          description: The Request-URI could not be found.
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MessageItemCollection'
+          description: The private integration could not be found or is a public integration
+        "500":
+          content: {}
+          description: An unexpected error occurred.
+        "503":
+          content: {}
+          description: The server is currently unavailable. Please try later.
+      security:
+      - oauth2:
+        - integration:ui-integrations.admin
+        - integration:ui-integrations.manage
+      summary: Tests a private source integration.
+      tags:
+      - UiIntegrations
+components:
+  schemas:
+    UiIntegrationItemModel:
+      example:
+        sourceUrl: sourceUrl
+        labelTranslations:
+          key: labelTranslations
+        code: code
+        sourceType: Private
+        roles:
+        - roles
+        - roles
+        propertyIds:
+        - propertyIds
+        - propertyIds
+        id: id
+        label: label
+        iconSource: iconSource
+        target: DashboardPropertyContext
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        label:
+          type: string
+        labelTranslations:
+          additionalProperties:
+            type: string
+          type: object
+        iconSource:
+          type: string
+        sourceUrl:
+          type: string
+        propertyIds:
+          items:
+            type: string
+          type: array
+        roles:
+          items:
+            type: string
+          type: array
+        sourceType:
+          description: "Public source type means, that the browser can see the URL\
+            \ directly. This is true for instance, if you have Hybrid OAuth flow active.\r\
+            \n            \r\nPrivate source type means, that the server will request\
+            \ from that source URL a public URL, which is pre-authenticated and forward\
+            \ that to the client."
+          enum:
+          - Private
+          - Public
+          type: string
+        target:
+          enum:
+          - DashboardPropertyContext
+          - DashboardAccountContext
+          - ReservationDetailsTab
+          - PropertyMenuReports
+          - PropertyMenuApps
+          - AccountMenuApps
+          - CompanyDetailsTab
+          type: string
+      required:
+      - code
+      - id
+      - label
+      - sourceType
+      - sourceUrl
+      - target
+      type: object
+    UiIntegrationListModel:
+      example:
+        count: 0
+        uiIntegrations:
+        - sourceUrl: sourceUrl
+          labelTranslations:
+            key: labelTranslations
+          code: code
+          sourceType: Private
+          roles:
+          - roles
+          - roles
+          propertyIds:
+          - propertyIds
+          - propertyIds
+          id: id
+          label: label
+          iconSource: iconSource
+          target: DashboardPropertyContext
+        - sourceUrl: sourceUrl
+          labelTranslations:
+            key: labelTranslations
+          code: code
+          sourceType: Private
+          roles:
+          - roles
+          - roles
+          propertyIds:
+          - propertyIds
+          - propertyIds
+          id: id
+          label: label
+          iconSource: iconSource
+          target: DashboardPropertyContext
+      properties:
+        uiIntegrations:
+          items:
+            $ref: '#/components/schemas/UiIntegrationItemModel'
+          type: array
+        count:
+          format: int64
+          type: integer
+      required:
+      - count
+      - uiIntegrations
+      type: object
+    MessageItemCollection:
+      properties:
+        messages:
+          items:
+            type: string
+          readOnly: true
+          type: array
+      type: object
+    ReplaceUiIntegrationModel:
+      example: |-
+        {
+          "label": "My Integration",
+          "labelTranslations": {
+            "de": "Meine Integration",
+            "es": "Mi Integración"
+          },
+          "iconSource": "https://www.myintegrationiconsource.com",
+          "sourceUrl": "https://www.myintegration.com",
+          "sourceType": "Public",
+          "propertyIds": [
+            "BER",
+            "MUC"
+          ],
+          "roles": [
+            "PROPERTYADMIN",
+            "FRONTDESK"
+          ]
+        }
+      properties:
+        label:
+          description: "Label to be displayed as the name of your integration.\r\n\
+            For example, this is the text that is displayed on your user's apps list."
+          type: string
+        labelTranslations:
+          additionalProperties:
+            type: string
+          description: "Different translations for the integration label.\r\nYou can\
+            \ provide as many translations as you want.\r\nYou should only provide\
+            \ the iso code of the language for example 'en' for english and 'de' for\
+            \ German. No need for the country.\r\nIf there is not a translation for\
+            \ a specific language, we will display the value of the Label as default."
+          type: object
+        iconSource:
+          type: string
+        sourceUrl:
+          type: string
+        sourceType:
+          description: "Public source type means, that the browser can see the URL\
+            \ directly. This is true for instance, if you have Hybrid OAuth flow active.\r\
+            \n            \r\nPrivate source type means, that the server will request\
+            \ from that source URL a public URL, which is pre-authenticated and forward\
+            \ that to the client."
+          enum:
+          - Private
+          - Public
+          type: string
+        propertyIds:
+          description: "List of Ids for the properties for which the integration is\
+            \ configured\r\nIf the list is empty then the integration is configured\
+            \ for all properties\r\nRemark: Only applicable to non account level integrations"
+          items:
+            type: string
+          type: array
+        roles:
+          description: "List of Roles for which the integration is configured to be\
+            \ used\r\nIf the list is empty then the integration is configured for\
+            \ all roles"
+          items:
+            type: string
+          type: array
+      required:
+      - label
+      - sourceType
+      - sourceUrl
+      type: object
+    CreateUiIntegrationModel:
+      example: |-
+        {
+          "code": "MYINTEGRATIONWITHAPALEO",
+          "label": "My Integration",
+          "labelTranslations": {
+            "de": "Meine Integration",
+            "es": "Mi Integración"
+          },
+          "iconSource": "https://www.myintegrationiconsource.com",
+          "sourceUrl": "https://www.myintegration.com",
+          "sourceType": "Public",
+          "propertyIds": [
+            "BER",
+            "MUC"
+          ],
+          "roles": [
+            "PROPERTYADMIN",
+            "FRONTDESK"
+          ]
+        }
+      properties:
+        code:
+          description: "Code to identify the current integration.\r\n            \r\
+            \nThe code can be any string of choosing.\r\n            \r\nIf no code\
+            \ is provided the integration target will be used as code."
+          type: string
+        label:
+          description: "Label to be displayed as the name of your integration.\r\n\
+            For example, this is the text that is displayed on your user's apps list."
+          type: string
+        labelTranslations:
+          additionalProperties:
+            type: string
+          description: "Different translations for the integration label.\r\nYou can\
+            \ provide as many translations as you want.\r\nYou should only provide\
+            \ the iso code of the language for example 'en' for english and 'de' for\
+            \ German. No need for the country.\r\nIf there is not a translation for\
+            \ a specific language, we will display the value of the Label as default."
+          type: object
+        iconSource:
+          type: string
+        sourceUrl:
+          type: string
+        sourceType:
+          enum:
+          - Private
+          - Public
+          type: string
+        propertyIds:
+          description: "List of Ids for the properties for which the integration is\
+            \ configured\r\nIf the list is empty then the integration is configured\
+            \ for all properties\r\nRemark: Only applicable to non account level integrations"
+          items:
+            type: string
+          type: array
+        roles:
+          description: "List of Roles for which the integration is configured to be\
+            \ used\r\nIf the list is empty then the integration is configured for\
+            \ all roles"
+          items:
+            type: string
+          type: array
+      required:
+      - label
+      - sourceType
+      - sourceUrl
+      type: object
+    UiIntegrationCreatedModel:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      type: object
+    UiIntegrationTestResultModel:
+      example:
+        errorContent: errorContent
+        success: true
+        errorType: HttpRequestToPrivateUrlError
+        errorMessage: errorMessage
+        receivedResponse: receivedResponse
+      properties:
+        success:
+          type: boolean
+        errorType:
+          enum:
+          - HttpRequestToPrivateUrlError
+          - ResponseDoesNotMeetJsonSchemaError
+          - UrlIsNotValidError
+          - ResponseContentFromPrivateUrlError
+          type: string
+        errorMessage:
+          type: string
+        errorContent:
+          type: string
+        receivedResponse:
+          type: string
+      type: object
+  securitySchemes:
+    oauth2:
+      flows:
+        implicit:
+          authorizationUrl: https://identity.apaleo.com/connect/authorize
+          scopes:
+            integration:ui-integrations.admin: Create/Modify/Delete UI Integrations
+              (Admin)
+      type: oauth2
+x-original-swagger-version: "2.0"
