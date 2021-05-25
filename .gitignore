@@ -13,6 +13,7 @@
 
 .vscode
 *-config.yaml
+!env-config.yaml
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
