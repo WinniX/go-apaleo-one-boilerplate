@@ -8,7 +8,7 @@
 	<ul>
 	{{ range .Reservations }}
 		<li>
-			<a href="https://app.apaleo.com/{{ .Property.Id }}/reservations/{{ .Id }}">
+			<a target="_parent" href="https://app.apaleo.com/{{ .Property.Id }}/reservations/{{ .Id }}">
 			{{with .PrimaryGuest}}{{ .FirstName }} {{ .LastName }}{{end}}
 			</a>
 		</li>
