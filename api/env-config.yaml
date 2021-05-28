@@ -11,8 +11,8 @@ oauth:
     client_id: "" # replace with your apaleo client id. More https://apaleo.dev/guides/apaleo-store/
     client_secret: "" # replace with your apaleo client secret. More https://apaleo.dev/guides/apaleo-store/
     scopes: # the scopes your app needs. Below is the minimal list needed to add your app as UI integration and read user details
-      - "offline_access"
-      - "integration:ui-integrations.manage"
-      - "identity:account-users.read"
       - "openid"
       - "profile"
+      - "offline_access"
+      - "integration:ui-integrations.manage"
+      - "reservations.read"
