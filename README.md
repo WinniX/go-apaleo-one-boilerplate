@@ -1,7 +1,16 @@
 # [Go] apaleo One boilerplate
 
 Quickstart Go project template for developing an "apaleo One" app.
-More info on what "apaleo One" is here https://apaleo.dev/guides/apaleo-store/
+More info on what "apaleo One" is can be found here https://apaleo.dev/guides/start/apaleo-one/
+
+### Demo
+![go-apaleo-one-demo](https://user-images.githubusercontent.com/426392/119714435-295e0780-be63-11eb-9acd-8cebe33725a2.gif)
+
+### Features
+- 1-click installation of an app as apaleo One app
+- Authorization via apaleo platform
+- Refresh token functionality
+- Multiple account support
 
 ### Prerequisites
 
